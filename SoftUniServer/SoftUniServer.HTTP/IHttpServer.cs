@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Cache;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SoftUniServer.HTTP
 {
@@ -9,6 +10,6 @@ namespace SoftUniServer.HTTP
     {
         void AddRoute(string path, Func<HttpRequest, HttpResponse> acion);
 
-        void Start(int port);
+        Task Start(int port);
     }
 }

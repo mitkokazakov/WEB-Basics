@@ -1,12 +1,14 @@
 ﻿
 using SoftUniServer.HTTP;
+using System;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace SoftUniServer.FirstApp
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             IHttpServer server = new HttpServer();
 
@@ -14,23 +16,23 @@ namespace SoftUniServer.FirstApp
             server.AddRoute("/about", AboutPage);
             server.AddRoute("/users/login", LoginPage);
 
-            server.Start();
+            await server.Start(80);
 
         }
 
         static HttpResponse HomePage(HttpRequest request)
-        { 
-
+        {
+            throw new NotImplementedException();
         }
 
         static HttpResponse AboutPage(HttpRequest request)
         {
-
+            throw new NotImplementedException();
         }
 
         static HttpResponse LoginPage(HttpRequest request)
         {
-
+            throw new NotImplementedException();
         }
     }
 }
