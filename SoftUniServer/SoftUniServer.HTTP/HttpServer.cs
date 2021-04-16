@@ -71,6 +71,8 @@ namespace SoftUniServer.HTTP
 
                 string request = Encoding.UTF8.GetString(data.ToArray());
 
+                HttpRequest httpRequest = new HttpRequest(request);
+
                 Console.WriteLine(request);
                 
             }
