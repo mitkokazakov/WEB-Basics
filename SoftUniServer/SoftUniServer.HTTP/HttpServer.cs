@@ -10,6 +10,7 @@ namespace SoftUniServer.HTTP
     public class HttpServer : IHttpServer
     {
         private const int BufferSize = 4096;
+        private const string NewLine = "\r\n";
 
         IDictionary<string, Func<HttpRequest, HttpResponse>> routingTable = new Dictionary<string, Func<HttpRequest, HttpResponse>>();
 
@@ -74,7 +75,20 @@ namespace SoftUniServer.HTTP
                 HttpRequest httpRequest = new HttpRequest(request);
 
                 Console.WriteLine(request);
-                
+
+                string html = "<h1>Welcome in our SoftUni Server</h1>";
+
+                byte[] bodyResponseBytes = Encoding.UTF8.GetBytes(html);
+
+                string response = "HTTP/ 1.1 200 OK" + NewLine +
+                                   "Content-Type: text/html" + NewLine +
+                                   $"Content-Length: {bodyResponseBytes.Length}" + NewLine + NewLine;
+
+                byte[] headersResponseBytes = Encoding.UTF8.GetBytes(response);
+
+                await stream.WriteAsync(headersResponseBytes,0,headersResponseBytes.Length);
+                await stream.WriteAsync(bodyResponseBytes,0,bodyResponseBytes.Length);
+
             }
 
                 
