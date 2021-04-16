@@ -74,7 +74,9 @@ namespace SoftUniServer.HTTP
 
                 HttpRequest httpRequest = new HttpRequest(request);
 
+                //Console.WriteLine(request);
                 Console.WriteLine(httpRequest);
+                
 
                 string html = "<h1>Welcome in our SoftUni Server</h1>";
 
@@ -82,6 +84,7 @@ namespace SoftUniServer.HTTP
 
                 string response = "HTTP/ 1.1 200 OK" + NewLine +
                                    "Content-Type: text/html" + NewLine +
+                                   "Set-Cookie: sid=testtest;" + NewLine +
                                    $"Content-Length: {bodyResponseBytes.Length}" + NewLine + NewLine;
 
                 byte[] headersResponseBytes = Encoding.UTF8.GetBytes(response);

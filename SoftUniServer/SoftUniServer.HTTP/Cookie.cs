@@ -7,15 +7,11 @@ namespace SoftUniServer.HTTP
     {
         public Cookie(string cookieString)
         {
-            var cookieParts = cookieString.Split(new string[] {"; "},StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (var c in cookieParts)
-            {
-                var singleCookie = c.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                var singleCookie = cookieString.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
 
                 this.Name = singleCookie[0];
                 this.Value = singleCookie[1];
-            }
+            
         }
         public string Name { get; set; }
 
@@ -24,7 +20,7 @@ namespace SoftUniServer.HTTP
         public override string ToString()
         {
 
-            return $"{this.Name}: {this.Value};";
+            return $"{this.Name}={this.Value};";
         }
     }
 }

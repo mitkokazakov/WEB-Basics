@@ -54,8 +54,14 @@ namespace SoftUniServer.HTTP
 
             if (cookieHeader != null)
             {
-                Cookie cookie = new Cookie(cookieHeader.Value);
-                this.Cookies.Add(cookie);
+                var cookieParts = cookieHeader.Value.Split(new string[] { "; " }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (var part in cookieParts)
+                {
+                    Cookie cookie = new Cookie(part);
+                    this.Cookies.Add(cookie);
+                }
+                
             }
         }
         public string Path { get; set; }
@@ -79,13 +85,16 @@ namespace SoftUniServer.HTTP
                 sb.Append(header + "\r\n");
             }
 
-            sb.Append("Cookie: ");
+            //if (this.Cookies.Count > 0)
+            //{
+            //    sb.Append("Cookie: ");
 
-            foreach (var cookie in this.Cookies)
-            {
+            //    foreach (var cookie in this.Cookies)
+            //    {
 
-                sb.Append(cookie);
-            }
+            //        sb.Append(cookie);
+            //    }
+            //}
 
             sb.Append("\r\n");
 
