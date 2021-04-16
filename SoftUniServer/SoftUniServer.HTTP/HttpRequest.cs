@@ -67,5 +67,29 @@ namespace SoftUniServer.HTTP
         public ICollection<Header> Headers { get; set; }
 
         public ICollection<Cookie> Cookies { get; set; }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append($"{this.Method} {this.Path}" + "\r\n");
+
+            foreach (var header in this.Headers)
+            {
+                sb.Append(header + "\r\n");
+            }
+
+            sb.Append("Cookie: ");
+
+            foreach (var cookie in this.Cookies)
+            {
+
+                sb.Append(cookie);
+            }
+
+            sb.Append("\r\n");
+
+            return sb.ToString();
+        }
     }
 }

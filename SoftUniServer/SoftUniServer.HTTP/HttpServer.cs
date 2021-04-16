@@ -74,7 +74,7 @@ namespace SoftUniServer.HTTP
 
                 HttpRequest httpRequest = new HttpRequest(request);
 
-                Console.WriteLine(request);
+                Console.WriteLine(httpRequest);
 
                 string html = "<h1>Welcome in our SoftUni Server</h1>";
 
