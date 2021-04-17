@@ -5,6 +5,11 @@ namespace SoftUniServer.HTTP
 {
     public class Cookie
     {
+        public Cookie(string name, string value)
+        {
+            this.Name = name;
+            this.Value = value;
+        }
         public Cookie(string cookieString)
         {
                 var singleCookie = cookieString.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
