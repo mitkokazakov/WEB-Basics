@@ -82,15 +82,19 @@ namespace SoftUniServer.HTTP
 
                 byte[] bodyResponseBytes = Encoding.UTF8.GetBytes(html);
 
-                string response = "HTTP/ 1.1 200 OK" + NewLine +
-                                   "Content-Type: text/html" + NewLine +
-                                   "Set-Cookie: sid=testtest;" + NewLine +
-                                   $"Content-Length: {bodyResponseBytes.Length}" + NewLine + NewLine;
+                //string response = "HTTP/ 1.1 200 OK" + NewLine +
+                //                   "Content-Type: text/html" + NewLine +
+                //                   "Set-Cookie: sid=testtest;" + NewLine +
+                //                   $"Content-Length: {bodyResponseBytes.Length}" + NewLine + NewLine;
 
-                byte[] headersResponseBytes = Encoding.UTF8.GetBytes(response);
+                HttpResponse httpResponse = new HttpResponse("text/html",bodyResponseBytes);
+                httpResponse.AddHeader("Server", "SoftUniServer 1.0");
+
+                byte[] headersResponseBytes = Encoding.UTF8.GetBytes(httpResponse.ToString());
+
 
                 await stream.WriteAsync(headersResponseBytes,0,headersResponseBytes.Length);
-                await stream.WriteAsync(bodyResponseBytes,0,bodyResponseBytes.Length);
+                await stream.WriteAsync(httpResponse.Body,0,httpResponse.Body.Length);
 
             }
 

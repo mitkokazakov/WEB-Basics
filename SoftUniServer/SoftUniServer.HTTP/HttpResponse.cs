@@ -25,7 +25,7 @@ namespace SoftUniServer.HTTP
 
         public ICollection<ResponseCookie> Cookies { get; set; }
 
-        public byte[] Body { get; set }
+        public byte[] Body { get; set; }
 
         public void AddHeader(string name, string value)
         {
@@ -47,9 +47,10 @@ namespace SoftUniServer.HTTP
 
             foreach (var header in this.Headers)
             {
-                sb.Append($"{header.Name}: {header.Value}" + "\r\n");
+                sb.Append(header.ToString() + "\r\n");
             }
 
+            sb.Append("\r\n");
 
             return sb.ToString();
         }
