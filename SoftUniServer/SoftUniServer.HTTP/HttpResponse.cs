@@ -18,6 +18,7 @@ namespace SoftUniServer.HTTP
 
             this.AddHeader("Content-Type", contentType);
             this.AddHeader("Content-Length", this.Body.Length.ToString());
+            this.AddHeader("Server", "SoftUni Server 1.0");
 
             this.AddResponseCookie("SSID",Guid.NewGuid().ToString());
         }

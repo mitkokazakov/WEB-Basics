@@ -74,27 +74,36 @@ namespace SoftUniServer.HTTP
 
                 HttpRequest httpRequest = new HttpRequest(request);
 
+                HttpResponse currentResponse = null;
+
+                if (!this.routingTable.ContainsKey(httpRequest.Path))
+                {
+                    // NotFound 404
+                }
+                else 
+                {
+                    var page = this.routingTable[httpRequest.Path];
+
+                    currentResponse = page(httpRequest);
+                }
+
                 //Console.WriteLine(request);
                 Console.WriteLine(httpRequest);
-                
 
-                string html = "<h1>Welcome in our SoftUni Server</h1>";
 
-                byte[] bodyResponseBytes = Encoding.UTF8.GetBytes(html);
+                //string html = "<h1>Welcome in our SoftUni Server</h1>";
 
-                //string response = "HTTP/ 1.1 200 OK" + NewLine +
-                //                   "Content-Type: text/html" + NewLine +
-                //                   "Set-Cookie: sid=testtest;" + NewLine +
-                //                   $"Content-Length: {bodyResponseBytes.Length}" + NewLine + NewLine;
+                //byte[] bodyResponseBytes = Encoding.UTF8.GetBytes(html);
 
-                HttpResponse httpResponse = new HttpResponse("text/html",bodyResponseBytes);
-                httpResponse.AddHeader("Server", "SoftUniServer 1.0");
+                //HttpResponse httpResponse = new HttpResponse("text/html",bodyResponseBytes);
 
-                byte[] headersResponseBytes = Encoding.UTF8.GetBytes(httpResponse.ToString());
+                //byte[] headersResponseBytes = Encoding.UTF8.GetBytes(httpResponse.ToString());
 
+
+                byte[] headersResponseBytes = Encoding.UTF8.GetBytes(currentResponse.ToString());
 
                 await stream.WriteAsync(headersResponseBytes,0,headersResponseBytes.Length);
-                await stream.WriteAsync(httpResponse.Body,0,httpResponse.Body.Length);
+                await stream.WriteAsync(currentResponse.Body,0,currentResponse.Body.Length);
 
             }
 

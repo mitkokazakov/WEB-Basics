@@ -2,6 +2,7 @@
 using SoftUniServer.HTTP;
 using System;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace SoftUniServer.FirstApp
@@ -22,7 +23,13 @@ namespace SoftUniServer.FirstApp
 
         static HttpResponse HomePage(HttpRequest request)
         {
-            throw new NotImplementedException();
+            string html = "<h1>Welcome in our SoftUni Server</h1>";
+
+            byte[] bodyResponseBytes = Encoding.UTF8.GetBytes(html);
+
+            HttpResponse httpResponse = new HttpResponse("text/html", bodyResponseBytes);
+
+            return httpResponse;
         }
 
         static HttpResponse AboutPage(HttpRequest request)
