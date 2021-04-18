@@ -18,6 +18,8 @@ namespace SoftUniServer.HTTP
 
             this.AddHeader("Content-Type", contentType);
             this.AddHeader("Content-Length", this.Body.Length.ToString());
+
+            this.AddResponseCookie("SSID",Guid.NewGuid().ToString());
         }
         public ICollection<Header> Headers { get; set; }
 
@@ -60,6 +62,14 @@ namespace SoftUniServer.HTTP
             foreach (var header in this.Headers)
             {
                 sb.Append(header.ToString() + "\r\n");
+            }
+
+            if (this.Cookies.Count > 0)
+            {
+                foreach (var c in this.Cookies)
+                {
+                    sb.Append($"Set-Cookie: {c.ToString()}" + "\r\n");
+                }
             }
 
             sb.Append("\r\n");
