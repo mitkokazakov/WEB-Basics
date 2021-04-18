@@ -34,7 +34,13 @@ namespace SoftUniServer.FirstApp
 
         static HttpResponse AboutPage(HttpRequest request)
         {
-            throw new NotImplementedException();
+            string html = "<h1>About Us</h1>";
+
+            byte[] bodyResponseBytes = Encoding.UTF8.GetBytes(html);
+
+            HttpResponse httpResponse = new HttpResponse("text/html", bodyResponseBytes);
+
+            return httpResponse;
         }
 
         static HttpResponse LoginPage(HttpRequest request)
