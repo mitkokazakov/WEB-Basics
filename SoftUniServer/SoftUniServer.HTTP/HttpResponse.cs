@@ -11,7 +11,7 @@ namespace SoftUniServer.HTTP
         public HttpResponse(string contentType, byte[] body, StatusCode statusCode = StatusCode.OK)
         {
             this.Headers = new List<Header>();
-            this.Cookies = new List<ResponseCookie>();
+            this.Cookies = new List<Cookie>();
 
             this.Body = body;
             this.StatusCode = statusCode;
@@ -23,7 +23,7 @@ namespace SoftUniServer.HTTP
 
         public StatusCode StatusCode { get; set; }
 
-        public ICollection<ResponseCookie> Cookies { get; set; }
+        public ICollection<Cookie> Cookies { get; set; }
 
         public byte[] Body { get; set; }
 
@@ -37,6 +37,18 @@ namespace SoftUniServer.HTTP
 
             Header header = new Header(name,value);
             this.Headers.Add(header);
+        }
+
+        public void AddResponseCookie(string name, string value)
+        {
+
+            if (this.Cookies.Any(c => c.Name == name))
+            {
+                throw new ArgumentException("Already exsit ResponseCookie with this name");
+            }
+
+            ResponseCookie responseCookie = new ResponseCookie(name, value);
+            this.Cookies.Add(responseCookie);
         }
 
         public override string ToString()
