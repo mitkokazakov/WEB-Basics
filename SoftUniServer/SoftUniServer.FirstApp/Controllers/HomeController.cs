@@ -2,15 +2,16 @@
 using SoftUniServer.MVC;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace SoftUniServer.FirstApp.Controllers
 {
     class HomeController : Controller
     {
-        public HttpResponse HomePage(HttpRequest request)
+        public HttpResponse Home(HttpRequest request)
         {
-            string html = "<h1>Welcome in our SoftUni Server</h1>";
+            string html = File.ReadAllText("Views/Home/Home.html");
 
             byte[] bodyResponseBytes = Encoding.UTF8.GetBytes(html);
 
@@ -19,7 +20,7 @@ namespace SoftUniServer.FirstApp.Controllers
             return httpResponse;
         }
 
-        public HttpResponse AboutPage(HttpRequest request)
+        public HttpResponse About(HttpRequest request)
         {
             string html = "<h1>About Us</h1>";
 

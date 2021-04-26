@@ -8,14 +8,14 @@ namespace SoftUniServer.FirstApp.Controllers
 {
     class UsersController : Controller
     {
-        public HttpResponse LoginPage(HttpRequest request)
+        public HttpResponse Login(HttpRequest request)
         {
             throw new NotImplementedException();
         }
 
-        public HttpResponse RegisterPage(HttpRequest request)
+        public HttpResponse Register(HttpRequest request)
         {
-            
+            throw new NotImplementedException();
         }
     }
 }
