@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SoftUniServer.HTTP\SoftUniServer.HTTP.csproj" />
+    <ProjectReference Include="..\SoftUniServer.MVC\SoftUniServer.MVC.csproj" />
   </ItemGroup>
 
 </Project>

@@ -16,32 +16,15 @@ namespace SoftUniServer.FirstApp
             server.AddRoute("/", HomePage);
             server.AddRoute("/about", AboutPage);
             server.AddRoute("/users/login", LoginPage);
+            server.AddRoute("/users/register", LoginPage);
 
             await server.Start(80);
 
         }
 
-        static HttpResponse HomePage(HttpRequest request)
-        {
-            string html = "<h1>Welcome in our SoftUni Server</h1>";
+        
 
-            byte[] bodyResponseBytes = Encoding.UTF8.GetBytes(html);
-
-            HttpResponse httpResponse = new HttpResponse("text/html", bodyResponseBytes);
-
-            return httpResponse;
-        }
-
-        static HttpResponse AboutPage(HttpRequest request)
-        {
-            string html = "<h1>About Us</h1>";
-
-            byte[] bodyResponseBytes = Encoding.UTF8.GetBytes(html);
-
-            HttpResponse httpResponse = new HttpResponse("text/html", bodyResponseBytes);
-
-            return httpResponse;
-        }
+        
 
         static HttpResponse LoginPage(HttpRequest request)
         {
