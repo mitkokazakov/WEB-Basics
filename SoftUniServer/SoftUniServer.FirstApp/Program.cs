@@ -16,10 +16,10 @@ namespace SoftUniServer.FirstApp
             HomeController homeController = new HomeController();
             UsersController usersController = new UsersController();
 
-            server.AddRoute("/", homeController.HomePage);
-            server.AddRoute("/about", homeController.AboutPage);
-            server.AddRoute("/users/login", usersController.LoginPage);
-            server.AddRoute("/users/register", usersController.RegisterPage);
+            server.AddRoute("/", homeController.Home);
+            server.AddRoute("/about", homeController.About);
+            server.AddRoute("/users/login", usersController.Login);
+            server.AddRoute("/users/register", usersController.Register);
 
             await server.Start(80);
 
