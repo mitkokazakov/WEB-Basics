@@ -18,5 +18,16 @@ namespace SoftUniServer.FirstApp.Controllers
 
             return httpResponse;
         }
+
+        public HttpResponse AboutPage(HttpRequest request)
+        {
+            string html = "<h1>About Us</h1>";
+
+            byte[] bodyResponseBytes = Encoding.UTF8.GetBytes(html);
+
+            HttpResponse httpResponse = new HttpResponse("text/html", bodyResponseBytes);
+
+            return httpResponse;
+        }
     }
 }
