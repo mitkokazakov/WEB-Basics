@@ -11,13 +11,13 @@ namespace SoftUniServer.FirstApp.Controllers
     {
         public HttpResponse Home(HttpRequest request)
         {
-            string html = File.ReadAllText("Views/Home/Home.html");
+            //string html = File.ReadAllText("Views/Home/Home.html");
 
-            byte[] bodyResponseBytes = Encoding.UTF8.GetBytes(html);
+            //byte[] bodyResponseBytes = Encoding.UTF8.GetBytes(html);
 
-            HttpResponse httpResponse = new HttpResponse("text/html", bodyResponseBytes);
+            //HttpResponse httpResponse = new HttpResponse("text/html", bodyResponseBytes);
 
-            return httpResponse;
+            return this.View("Views/Home/Home.html");
         }
 
         public HttpResponse About(HttpRequest request)
