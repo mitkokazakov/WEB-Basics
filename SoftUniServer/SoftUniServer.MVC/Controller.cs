@@ -10,7 +10,9 @@ namespace SoftUniServer.MVC
     {
         public HttpResponse View(string path)
         {
-            string html = File.ReadAllText(path);
+            var controllerName = this.GetType().Name.Replace("Controller", String.Empty);
+
+            string html = File.ReadAllText("Views/" + controllerName + "/" + path + ".html");
 
             byte[] bodyResponseBytes = Encoding.UTF8.GetBytes(html);
 
