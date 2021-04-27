@@ -10,12 +10,7 @@ namespace SoftUniServer.MVC
     {
         public static async Task RunAsync(List<Route> routeTable)
         {
-            IHttpServer server = new HttpServer();
-
-            foreach (var route in routeTable)
-            {
-                server.AddRoute(route.Path,route.Action);
-            }
+            IHttpServer server = new HttpServer(routeTable);
 
             await server.Start(80);
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -12,20 +13,15 @@ namespace SoftUniServer.HTTP
         private const int BufferSize = 4096;
         private const string NewLine = "\r\n";
 
-        IDictionary<string, Func<HttpRequest, HttpResponse>> routingTable = new Dictionary<string, Func<HttpRequest, HttpResponse>>();
+        //IDictionary<string, Func<HttpRequest, HttpResponse>> routingTable = new Dictionary<string, Func<HttpRequest, HttpResponse>>();
 
-        public void AddRoute(string path, Func<HttpRequest, HttpResponse> action)
+        List<Route> routeTable;
+        public HttpServer(List<Route> routeTable)
         {
-            if (routingTable.ContainsKey(path))
-            {
-                routingTable[path] = action;
-            }
-            else 
-            {
-                routingTable.Add(path,action);
-            }
+            this.routeTable = routeTable;
         }
 
+        
         public async Task Start(int port)
         {
             TcpListener tcpListener = new TcpListener(IPAddress.Loopback,port);
@@ -76,13 +72,15 @@ namespace SoftUniServer.HTTP
 
                 HttpResponse currentResponse = null;
 
-                if (!this.routingTable.ContainsKey(httpRequest.Path))
+                Route route = this.routeTable.FirstOrDefault(r => r.Path == httpRequest.Path);
+
+                if (route == null)
                 {
                     // NotFound 404
                 }
                 else 
                 {
-                    var page = this.routingTable[httpRequest.Path];
+                    var page = route.Action;
 
                     currentResponse = page(httpRequest);
                 }
