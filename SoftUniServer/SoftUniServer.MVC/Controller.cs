@@ -21,5 +21,14 @@ namespace SoftUniServer.MVC
 
             return httpResponse;
         }
+
+        public HttpResponse FileRead(string path, string contentType)
+        {
+            var fileBytes = File.ReadAllBytes(path);
+
+            var response = new HttpResponse(contentType,fileBytes);
+
+            return response;
+        }
     }
 }
