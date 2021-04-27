@@ -12,7 +12,7 @@ namespace SoftUniServer.FirstApp.Controllers
         public HttpResponse Home(HttpRequest request)
         {
            
-            return this.View("Home");
+            return this.View();
         }
 
         public HttpResponse About(HttpRequest request)

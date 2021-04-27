@@ -10,17 +10,17 @@ namespace SoftUniServer.FirstApp.Controllers
     {
         public HttpResponse Add(HttpRequest httpRequest)
         {
-            return this.View("Add");
+            return this.View();
         }
 
         public HttpResponse All(HttpRequest httpRequest)
         {
-            return this.View("All");
+            return this.View();
         }
 
         public HttpResponse Collection(HttpRequest httpRequest)
         {
-            return this.View("Collection");
+            return this.View();
         }
     }
 }

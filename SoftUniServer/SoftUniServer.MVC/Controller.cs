@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace SoftUniServer.MVC
 {
     public abstract class Controller
     {
-        public HttpResponse View(string path)
+        public HttpResponse View([CallerMemberName]string path = null)
         {
             var controllerName = this.GetType().Name.Replace("Controller", String.Empty);
 
