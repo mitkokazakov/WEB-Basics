@@ -20,6 +20,9 @@ namespace SoftUniServer.FirstApp
             server.AddRoute("/about", homeController.About);
             server.AddRoute("/users/login", usersController.Login);
             server.AddRoute("/users/register", usersController.Register);
+            server.AddRoute("/cards/all", usersController.Register);
+            server.AddRoute("/cards/add", usersController.Register);
+            server.AddRoute("/cards/collection", usersController.Register);
 
             await server.Start(80);
 

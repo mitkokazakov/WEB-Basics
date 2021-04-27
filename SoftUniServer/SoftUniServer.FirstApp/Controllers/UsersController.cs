@@ -10,12 +10,12 @@ namespace SoftUniServer.FirstApp.Controllers
     {
         public HttpResponse Login(HttpRequest request)
         {
-            throw new NotImplementedException();
+            return this.View("Views/Users/Login.html");
         }
 
         public HttpResponse Register(HttpRequest request)
         {
-            throw new NotImplementedException();
+            return this.View("Views/Users/Register.html");
         }
     }
 }
