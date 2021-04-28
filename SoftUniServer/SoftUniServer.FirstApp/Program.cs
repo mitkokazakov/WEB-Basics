@@ -29,6 +29,11 @@ namespace SoftUniServer.FirstApp
            routeTable.Add(new Route("/cards/add", cardsController.Add));
            routeTable.Add(new Route("/cards/collection", cardsController.Collection));
 
+           routeTable.Add(new Route("/css/bootstrap.min.css", cardsController.Collection));
+           routeTable.Add(new Route("/css/custom.css", cardsController.Collection));
+           routeTable.Add(new Route("/js/bootstrap.bundle.min.js", cardsController.Collection));
+           routeTable.Add(new Route("/js/custom.js", cardsController.Collection));
+
 
             await Host.RunAsync(routeTable);
 
