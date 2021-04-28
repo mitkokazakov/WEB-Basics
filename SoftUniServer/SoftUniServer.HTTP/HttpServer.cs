@@ -72,7 +72,7 @@ namespace SoftUniServer.HTTP
 
                 HttpResponse currentResponse = null;
 
-                Route route = this.routeTable.FirstOrDefault(r => r.Path == httpRequest.Path);
+                Route route = this.routeTable.FirstOrDefault(r => r.Path == httpRequest.Path && r.Method == httpRequest.Method);
 
                 if (route == null)
                 {
