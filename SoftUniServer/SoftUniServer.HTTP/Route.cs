@@ -6,12 +6,15 @@ namespace SoftUniServer.HTTP
 {
     public class Route
     {
-        public Route(string path, Func<HttpRequest, HttpResponse> action)
+        public Route(string path, MethodType method, Func<HttpRequest, HttpResponse> action)
         {
             this.Path = path;
             this.Action = action;
+            this.Method = method;
         }
         public string Path { get; set; }
+
+        public MethodType Method { get; set; }
 
         public Func<HttpRequest, HttpResponse> Action { get; set; }
     }
