@@ -11,9 +11,13 @@ namespace SoftUniServer.MVC
     {
         public HttpResponse View([CallerMemberName]string path = null)
         {
+            var layout = File.ReadAllText("Views/Shared/_Layout.html");
+
             var controllerName = this.GetType().Name.Replace("Controller", String.Empty);
 
-            string html = File.ReadAllText("Views/" + controllerName + "/" + path + ".html");
+            string currentView = File.ReadAllText("Views/" + controllerName + "/" + path + ".html");
+
+            var html = layout.Replace("@RenderBody()",currentView);
 
             byte[] bodyResponseBytes = Encoding.UTF8.GetBytes(html);
 

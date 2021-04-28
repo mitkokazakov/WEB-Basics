@@ -18,6 +18,7 @@ namespace SoftUniServer.FirstApp
             HomeController homeController = new HomeController();
             UsersController usersController = new UsersController();
             CardsController cardsController = new CardsController();
+            FileController fileController = new FileController();
 
             List<Route> routeTable = new List<Route>();
 
@@ -29,10 +30,10 @@ namespace SoftUniServer.FirstApp
            routeTable.Add(new Route("/cards/add", cardsController.Add));
            routeTable.Add(new Route("/cards/collection", cardsController.Collection));
 
-           routeTable.Add(new Route("/css/bootstrap.min.css", cardsController.Collection));
-           routeTable.Add(new Route("/css/custom.css", cardsController.Collection));
-           routeTable.Add(new Route("/js/bootstrap.bundle.min.js", cardsController.Collection));
-           routeTable.Add(new Route("/js/custom.js", cardsController.Collection));
+           routeTable.Add(new Route("/css/bootstrap.min.css", fileController.BootstrapCSS));
+           routeTable.Add(new Route("/css/custom.css", fileController.CustomCSS));
+           routeTable.Add(new Route("/js/bootstrap.bundle.min.js", fileController.BootstrapJS));
+           routeTable.Add(new Route("/js/custom.js", fileController.CustomJS));
 
 
             await Host.RunAsync(routeTable);
