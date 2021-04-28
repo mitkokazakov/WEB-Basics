@@ -8,8 +8,13 @@ namespace SoftUniServer.MVC
 {
     public static class Host
     {
-        public static async Task RunAsync(List<Route> routeTable)
+        public static async Task RunAsync(IMvcApp mvcApp)
         {
+            List<Route> routeTable = new List<Route>();
+
+            mvcApp.ConfigureServices();
+            mvcApp.Configuration(routeTable);
+
             IHttpServer server = new HttpServer(routeTable);
 
             await server.Start(80);
