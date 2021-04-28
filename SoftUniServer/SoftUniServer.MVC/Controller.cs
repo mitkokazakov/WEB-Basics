@@ -34,5 +34,14 @@ namespace SoftUniServer.MVC
 
             return response;
         }
+
+        public HttpResponse Redirect(string url)
+        {
+            HttpResponse httpResponse = new HttpResponse(StatusCode.Found);
+
+            httpResponse.Headers.Add(new Header("Location",url));
+
+            return httpResponse;
+        }
     }
 }

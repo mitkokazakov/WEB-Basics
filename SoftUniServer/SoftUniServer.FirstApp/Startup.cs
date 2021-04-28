@@ -18,8 +18,12 @@ namespace SoftUniServer.FirstApp
 
             routeTable.Add(new Route("/", MethodType.GET, homeController.Home));
             routeTable.Add(new Route("/about", MethodType.GET, homeController.About));
+
             routeTable.Add(new Route("/users/login", MethodType.GET, usersController.Login));
             routeTable.Add(new Route("/users/register", MethodType.GET, usersController.Register));
+            routeTable.Add(new Route("/users/login", MethodType.POST, usersController.DoLogin));
+
+
             routeTable.Add(new Route("/cards/all", MethodType.GET, cardsController.All));
             routeTable.Add(new Route("/cards/add", MethodType.GET, cardsController.Add));
             routeTable.Add(new Route("/cards/collection", MethodType.GET, cardsController.Collection));

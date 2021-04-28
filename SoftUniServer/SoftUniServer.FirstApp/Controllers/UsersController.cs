@@ -17,5 +17,10 @@ namespace SoftUniServer.FirstApp.Controllers
         {
             return this.View();
         }
+
+        public HttpResponse DoLogin(HttpRequest arg)
+        {
+            return this.Redirect("/");
+        }
     }
 }

@@ -8,6 +8,12 @@ namespace SoftUniServer.HTTP
 {
     public class HttpResponse
     {
+        public HttpResponse(StatusCode statusCode)
+        {
+            this.StatusCode = statusCode;
+            this.Headers = new List<Header>();
+            this.Cookies = new List<Cookie>();
+        }
         public HttpResponse(string contentType, byte[] body, StatusCode statusCode = StatusCode.OK)
         {
             this.Headers = new List<Header>();
