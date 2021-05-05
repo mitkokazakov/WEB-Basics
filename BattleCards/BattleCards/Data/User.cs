@@ -25,7 +25,6 @@ namespace BattleCards.Data
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(20)]
         public string Password { get; set; }
 
         public virtual ICollection<UserCard> UserCards { get; set; }
