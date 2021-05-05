@@ -3,12 +3,25 @@
     using Microsoft.EntityFrameworkCore;
 
     public class ApplicationDbContext : DbContext
-    { 
+    {
+        public ApplicationDbContext()
+        {
+
+        }
+
+        public ApplicationDbContext(DbContextOptions db) : base(db)
+        {
+
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(DatabaseConfiguration.ConnectionString);
+            }
+
             base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.UseSqlServer(DatabaseConfiguration.ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
