@@ -18,7 +18,7 @@ namespace SIS.MvcFramework
         {
             var typeName = this.GetType().Name/*.Replace("Controller", string.Empty)*/;
             var controllerName = typeName.Substring(0, typeName.Length - 10);
-            var viewPath = "Views/" + controllerName + "/" + viewName + ".html";
+            var viewPath = "Views/" + controllerName + "/" + viewName + ".cshtml";
             return this.ViewByName<T>(viewPath, viewModel);
         }
 
@@ -29,7 +29,7 @@ namespace SIS.MvcFramework
 
         protected HttpResponse Error(string error)
         {
-            return this.ViewByName<ErrorViewModel>("Views/Shared/Error.html", new ErrorViewModel { Error = error });
+            return this.ViewByName<ErrorViewModel>("Views/Shared/Error.cshtml", new ErrorViewModel { Error = error });
         }
 
         protected HttpResponse Redirect(string url)
@@ -48,7 +48,7 @@ namespace SIS.MvcFramework
             var html = File.ReadAllText(viewPath);
             html = viewEngine.GetHtml(html, viewModel, this.User);
 
-            var layout = File.ReadAllText("Views/Shared/_Layout.html");
+            var layout = File.ReadAllText("Views/Shared/_Layout.cshtml");
             var bodyWithLayout = layout.Replace("@RenderBody()", html);
             bodyWithLayout = viewEngine.GetHtml(bodyWithLayout, viewModel, this.User);
             return new HtmlResponse(bodyWithLayout);
