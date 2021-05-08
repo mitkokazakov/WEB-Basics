@@ -21,6 +21,8 @@
                 return;
             }
 
+            this.SessionData = new Dictionary<string, string>();
+
             this.Headers = new List<Header>();
             this.Cookies = new List<Cookie>();
 
