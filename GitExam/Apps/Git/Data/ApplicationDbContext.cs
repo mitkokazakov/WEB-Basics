@@ -17,7 +17,7 @@
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.;Database=Git;Integrated Security=true;");
+                optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=GitExam;Integrated Security=true;");
             }
         }
     }
