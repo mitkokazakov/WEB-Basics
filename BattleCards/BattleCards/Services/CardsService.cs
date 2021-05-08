@@ -2,6 +2,7 @@
 using BattleCards.ViewModels.Cards;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BattleCards.Services
@@ -28,6 +29,24 @@ namespace BattleCards.Services
 
             this.db.Cards.Add(card);
             this.db.SaveChanges();
+        }
+
+        public IEnumerable<AllCardsViewModel> GetAllCards()
+        {
+            var allCards = this.db.Cards.Select(c => new AllCardsViewModel()
+            {
+                Id = c.Id,
+                Name = c.Name,
+                ImageUrl = c.ImageUrl,
+                Keyword = c.Keyword,
+                Attack = c.Attack,
+                Health = c.Health,
+                Descritpion = c.Description
+            }).ToList();
+
+
+            return allCards;
+            
         }
     }
 }

@@ -18,7 +18,9 @@ namespace BattleCards.Controllers
         }
         public HttpResponse All()
         {
-            return this.View();
+            var allCards = this.cardsService.GetAllCards();
+
+            return this.View(allCards);
         }
 
         public HttpResponse Add()
