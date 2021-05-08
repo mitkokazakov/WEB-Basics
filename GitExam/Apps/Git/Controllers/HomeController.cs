@@ -12,10 +12,10 @@ namespace Git.Controllers
         [HttpGet("/")]
         public HttpResponse Index()
         {
-            if (this.IsUserSignedIn())
-            {
-                return this.Redirect("/Repositories/All");
-            }
+            //if (this.IsUserSignedIn())
+            //{
+            //    return this.Redirect("/");
+            //}
 
             return this.View();
         }
