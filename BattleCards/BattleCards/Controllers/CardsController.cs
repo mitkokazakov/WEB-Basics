@@ -1,4 +1,5 @@
-﻿using BattleCards.ViewModels.Cards;
+﻿using BattleCards.Services;
+using BattleCards.ViewModels.Cards;
 using SIS.HTTP;
 using SIS.MvcFramework;
 using System;
@@ -9,6 +10,12 @@ namespace BattleCards.Controllers
 {
     public class CardsController : Controller
     {
+        private readonly ICardsService cardsService;
+
+        public CardsController(ICardsService cardsService)
+        {
+            this.cardsService = cardsService;
+        }
         public HttpResponse All()
         {
             return this.View();
@@ -56,6 +63,9 @@ namespace BattleCards.Controllers
             {
                 return this.Error("Invalid length of the description");
             }
+
+            this.cardsService.InsertCard(model);
+            return this.Redirect("/Cards/All");
         }
     }
 }
