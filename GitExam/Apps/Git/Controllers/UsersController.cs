@@ -39,7 +39,7 @@ namespace Git.Controllers
 
             this.SignIn(userId);
 
-            return this.Redirect("/");
+            return this.Redirect("/Repositories/All");
         }
 
         [HttpPost]
