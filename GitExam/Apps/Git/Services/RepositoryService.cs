@@ -32,5 +32,22 @@ namespace Git.Services
             this.db.Repositories.Add(repository);
             this.db.SaveChanges();
         }
+
+        public List<AllReposViewModel> GetAll()
+        {
+            var allRepos = this.db.Repositories
+                .Where(r => r.IsPublic)
+                .Select(r => new AllReposViewModel()
+                {
+                    Id = r.Id,
+                    Name = r.Name,
+                    Owner = r.Owner.Username,
+                    CreatedOn = r.CreatedOn.ToString(),
+                    CommitsCount = r.Commits.Count
+
+                }).ToList();
+
+            return allRepos;
+        }
     }
 }

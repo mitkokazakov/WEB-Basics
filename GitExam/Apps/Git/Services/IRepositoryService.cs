@@ -8,5 +8,7 @@ namespace Git.Services
     public interface IRepositoryService
     {
         void CreateRepo(CreateRepoInputModel model, string userId);
+
+        List<AllReposViewModel> GetAll();
     }
 }

@@ -20,11 +20,15 @@ namespace Git.Controllers
 
         public HttpResponse All()
         {
-            return this.View();
+            var allRepos = this.repositoryService.GetAll();
+
+            return this.View(allRepos);
         }
 
         public HttpResponse Create() 
         {
+            
+
             return this.View();
         }
 
