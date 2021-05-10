@@ -49,5 +49,18 @@ namespace Git.Services
 
             return allRepos;
         }
+
+        public SingleRepoViewModel GetRepoById(string id)
+        {
+            Repository repository = this.db.Repositories.FirstOrDefault(r => r.Id == id);
+
+            SingleRepoViewModel allReposViewModel = new SingleRepoViewModel()
+            {
+                Id = repository.Id,
+                Name = repository.Name
+            };
+
+            return allReposViewModel;
+        }
     }
 }
