@@ -2,6 +2,7 @@
 using Git.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Git.Services
@@ -25,6 +26,21 @@ namespace Git.Services
 
             this.db.Commits.Add(commit);
             this.db.SaveChanges();
+        }
+
+        public IEnumerable<AllCommitsViewModel> GetAllCommitsByUserId(string userId)
+        {
+            var commits = this.db.Commits
+                .Where(c => c.CreatorId == userId)
+                .Select(c => new AllCommitsViewModel() { 
+                        Id = c.Id,
+                        RepositoryName = c.Repository.Name,
+                        CreatedOn = c.CreatedOn.ToString(),
+                        Description = c.Description
+                })
+                .ToList();
+
+            return commits;
         }
     }
 }

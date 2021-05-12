@@ -8,5 +8,7 @@ namespace Git.Services
     public interface ICommitsService
     {
         void CreateCommit(string userId, CommitInputViewModel model);
+
+        IEnumerable<AllCommitsViewModel> GetAllCommitsByUserId(string userId);
     }
 }
