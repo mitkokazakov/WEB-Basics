@@ -21,7 +21,11 @@ namespace Git.Controllers
         }
         public HttpResponse All()
         {
-            return this.View();
+            string userId = this.GetUserId();
+
+            var commits = this.commitsService.GetAllCommitsByUserId(userId);
+
+            return this.View(commits);
         }
 
         public HttpResponse Create(string id)
