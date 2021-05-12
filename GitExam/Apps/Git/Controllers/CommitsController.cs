@@ -32,8 +32,17 @@ namespace Git.Controllers
         }
 
         [HttpPost]
-        public HttpResponse Create()
+        public HttpResponse Create(CommitInputViewModel model)
         {
+            string userId = this.GetUserId();
+
+            if (String.IsNullOrEmpty(model.Description) || model.Description.Length < 5)
+            {
+                return this.Error("The Description must be minimum 5 characters");
+            }
+
+            this.commitsService.CreateCommit(userId, model);
+
             return this.Redirect("/Commits/All");
         }
     }
