@@ -42,5 +42,16 @@ namespace Git.Services
 
             return commits;
         }
+
+        public void DeleteCommit(string commitId)
+        {
+            Commit commit = this.db.Commits.FirstOrDefault(c => c.Id == commitId);
+
+            commit.CreatorId = null;
+            commit.RepositoryId = null;
+
+            this.db.Commits.Remove(commit);
+            this.db.SaveChanges();
+        }
     }
 }

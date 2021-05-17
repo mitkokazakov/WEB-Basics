@@ -10,5 +10,7 @@ namespace Git.Services
         void CreateCommit(string userId, CommitInputViewModel model);
 
         IEnumerable<AllCommitsViewModel> GetAllCommitsByUserId(string userId);
+
+        void DeleteCommit(string commitId);
     }
 }
