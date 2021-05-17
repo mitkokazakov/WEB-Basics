@@ -19,11 +19,21 @@ namespace Git.Controllers
         }
         public HttpResponse Login()
         {
+            if (this.IsUserSignedIn())
+            {
+                return this.Redirect("/Repositories/All");
+            }
+
             return this.View();
         }
 
         public HttpResponse Register()
         {
+            if (this.IsUserSignedIn())
+            {
+                return this.Redirect("/Repositories/All");
+            }
+
             return this.View();
         }
 
@@ -82,6 +92,11 @@ namespace Git.Controllers
 
         public HttpResponse LogOut()
         {
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/Users/Login");
+            }
+
             this.SignOut();
             return this.Redirect("/");
         }

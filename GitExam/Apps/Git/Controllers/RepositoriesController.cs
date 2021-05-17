@@ -27,7 +27,10 @@ namespace Git.Controllers
 
         public HttpResponse Create() 
         {
-            
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/Users/Login");
+            }
 
             return this.View();
         }

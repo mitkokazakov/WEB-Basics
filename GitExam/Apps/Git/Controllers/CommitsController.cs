@@ -21,6 +21,11 @@ namespace Git.Controllers
         }
         public HttpResponse All()
         {
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/Users/Login");
+            }
+
             string userId = this.GetUserId();
 
             var commits = this.commitsService.GetAllCommitsByUserId(userId);
@@ -30,6 +35,11 @@ namespace Git.Controllers
 
         public HttpResponse Create(string id)
         {
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/Users/Login");
+            }
+
             SingleRepoViewModel repository = this.repositoryService.GetRepoById(id);
 
             return this.View(repository);
@@ -53,6 +63,11 @@ namespace Git.Controllers
         
         public HttpResponse Delete(string id)
         {
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/Users/Login");
+            }
+
             this.commitsService.DeleteCommit(id);
 
             return this.Redirect("/Repositories/All");
