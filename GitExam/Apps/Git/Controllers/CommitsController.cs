@@ -49,5 +49,13 @@ namespace Git.Controllers
 
             return this.Redirect("/Commits/All");
         }
+
+        
+        public HttpResponse Delete(string id)
+        {
+            this.commitsService.DeleteCommit(id);
+
+            return this.Redirect("/Repositories/All");
+        }
     }
 }
