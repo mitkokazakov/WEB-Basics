@@ -1,1 +1,1 @@
-Simple exam - SofUni!!!
+Simple exam - SofUni!!
