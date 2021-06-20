@@ -11,7 +11,6 @@ namespace Git.Data
         public Repository()
         {
             this.Id = Guid.NewGuid().ToString();
-
             this.Commits = new HashSet<Commit>();
         }
 
