@@ -1,6 +1,7 @@
 ﻿namespace CarShop
 {
     using System.Threading.Tasks;
+    using CarShop.Data;
     using Microsoft.EntityFrameworkCore;
     using MyWebServer;
     using MyWebServer.Controllers;
@@ -15,6 +16,7 @@
                     .MapControllers())
                 .WithServices(services => services
                     .Add<IViewEngine, CompilationViewEngine>())
+                .WithConfiguration<CarShopDbContext>(context => context.Database.Migrate())
                 .Start();
     }
 }
