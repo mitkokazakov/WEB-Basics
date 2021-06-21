@@ -19,6 +19,8 @@ namespace CarShop.Data
 
         public const int PlateNumberMaxLength = 8;
 
+        public const int DescriptionMinLength = 5;
+
 
     }
 }
