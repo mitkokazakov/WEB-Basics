@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using CarShop.Data;
+    using CarShop.Services;
     using Microsoft.EntityFrameworkCore;
     using MyWebServer;
     using MyWebServer.Controllers;
@@ -16,6 +17,7 @@
                     .MapControllers())
                 .WithServices(services => services
                     .Add<IViewEngine, CompilationViewEngine>()
+                    .Add<IUsersService,UsersService>()
                     .Add<CarShopDbContext>())
                 .WithConfiguration<CarShopDbContext>(context => context.Database.Migrate())
                 .Start();
