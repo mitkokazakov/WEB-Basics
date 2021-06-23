@@ -100,5 +100,12 @@ namespace CarShop.Services
                 hashedInputStringBuilder.Append(b.ToString("X2"));
             return hashedInputStringBuilder.ToString();
         }
+
+        public bool IsMechanic(string userId)
+        {
+            var user = this.db.Users.FirstOrDefault(u => u.Id == userId);
+
+            return user.IsMechanic;
+        }
     }
 }

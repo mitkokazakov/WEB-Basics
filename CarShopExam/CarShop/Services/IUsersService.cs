@@ -16,5 +16,7 @@ namespace CarShop.Services
         void RegisterUser(RegisterUserViewModel model);
 
         bool IsUsernameFree(RegisterUserViewModel model);
+
+        bool IsMechanic(string userId);
     }
 }
