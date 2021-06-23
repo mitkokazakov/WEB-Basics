@@ -17,7 +17,8 @@
                     .MapControllers())
                 .WithServices(services => services
                     .Add<IViewEngine, CompilationViewEngine>()
-                    .Add<IUsersService,UsersService>()
+                    .Add<IUsersService, UsersService>()
+                    .Add<ICarsService, CarsService>()
                     .Add<CarShopDbContext>())
                 .WithConfiguration<CarShopDbContext>(context => context.Database.Migrate())
                 .Start();

@@ -63,5 +63,12 @@ namespace CarShop.Controllers
 
             return this.Redirect("/Users/Login");
         }
+
+        public HttpResponse Logout()
+        {
+            this.SignOut();
+
+            return this.Redirect("/Users/Login");
+        }
     }
 }
