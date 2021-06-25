@@ -1,6 +1,7 @@
 ﻿using CarShop.Data;
 using CarShop.Data.Models;
 using CarShop.ViewModels.Cars;
+using CarShop.ViewModels.Issues;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,26 @@ namespace CarShop.Services
 
             this.db.Cars.Add(car);
             this.db.SaveChanges();
+        }
+
+        public ListAllCarsIssues GetCarById(string carId)
+        {
+            var car = this.db.Cars.FirstOrDefault(c => c.Id == carId);
+
+            var currentCar = new ListAllCarsIssues()
+            {
+                Model = car.Model,
+                Year = car.Year.ToString(),
+                CarId = carId,
+                Issues = car.Issues.Select(i => new SingleIssueViewModel()
+                {
+                    IsFixed = i.IsFixed,
+                    Id = i.Id,
+                    Description = i.Description
+                }).ToList()
+            };
+
+            return currentCar;
         }
 
         public IEnumerable<ListAllCarsViewModel> ListAllCars(string userId)

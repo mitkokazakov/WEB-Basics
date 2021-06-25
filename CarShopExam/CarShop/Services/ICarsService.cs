@@ -1,4 +1,5 @@
 ﻿using CarShop.ViewModels.Cars;
+using CarShop.ViewModels.Issues;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,7 @@ namespace CarShop.Services
         void AddCar(AddCarViewModel model, string userId);
 
         ICollection<string> ValidateCar(AddCarViewModel model);
+
+        ListAllCarsIssues GetCarById(string carId);
     }
 }

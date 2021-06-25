@@ -19,6 +19,7 @@
                     .Add<IViewEngine, CompilationViewEngine>()
                     .Add<IUsersService, UsersService>()
                     .Add<ICarsService, CarsService>()
+                    .Add<IIssuesService, IssuesService>()
                     .Add<CarShopDbContext>())
                 .WithConfiguration<CarShopDbContext>(context => context.Database.Migrate())
                 .Start();
